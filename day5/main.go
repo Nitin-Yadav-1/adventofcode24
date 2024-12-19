@@ -21,7 +21,7 @@ func main() {
 func parseInput(data []byte) (map[int][]int, [][]int) {
 	var rules map[int][]int = map[int][]int{}
 	var updates [][]int = [][]int{}
-	
+
 	parts := strings.Split(strings.ReplaceAll(string(data), "\r\n", "\n"), "\n\n")
 
 	for _, line := range strings.Split(parts[0], "\n") {
@@ -40,10 +40,8 @@ func parseInput(data []byte) (map[int][]int, [][]int) {
 		updates = append(updates, row)
 	}
 
-
 	return rules, updates
 }
-
 
 func partone(rules map[int][]int, updates [][]int) int {
 	var sum int = 0
@@ -68,7 +66,7 @@ func parttwo(rules map[int][]int, updates [][]int) int {
 
 func isValidUpdate(rules map[int][]int, update []int) bool {
 	for i := 0; i < len(update); i++ {
-		for j := i+1; j < len(update); j++ {
+		for j := i + 1; j < len(update); j++ {
 			if contains(update[i], rules[update[j]]) {
 				return false
 			}
@@ -88,7 +86,7 @@ func contains(num int, arr []int) bool {
 
 func sort(update []int, rules map[int][]int) {
 	for i := 0; i < len(update); i++ {
-		for j := i+1; j < len(update); j++ {
+		for j := i + 1; j < len(update); j++ {
 			if compare(update[i], update[j], rules) == 1 {
 				temp := update[i]
 				update[i] = update[j]
@@ -99,10 +97,10 @@ func sort(update []int, rules map[int][]int) {
 }
 
 func compare(a int, b int, rules map[int][]int) int {
-	if contains(b, rules[a]) { 
+	if contains(b, rules[a]) {
 		return -1
 	}
-	
+
 	if contains(a, rules[b]) {
 		return 1
 	}
